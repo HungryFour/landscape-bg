@@ -111,14 +111,16 @@ class UpdateAdminPasswordController(BaseController):
         super().__init__(*args, **kwargs)
 
     def post(self):
-        arg = self.get_argument_dict(must_keys=["user_id", "oldpassword", "newpassword"])
+        arg = self.get_argument_dict(must_keys=["user_id", "old_password", "new_password"])
         user_id = arg.get("user_id")
-        oldpassword = arg.get("oldpassword")
-        newpassword = arg.get("newpassword")
+        oldpassword = arg.get("old_password")
+        newpassword = arg.get("new_password")
         us = AdminUserService()
         result = us.update_user_password(user_id, oldpassword, newpassword)
         return {
-            "status": result
+            "code": 0,
+            "msg": "success",
+            "data": result
         }
 
 
