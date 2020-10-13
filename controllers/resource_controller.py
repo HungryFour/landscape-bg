@@ -21,7 +21,7 @@ class ResourceController(BaseController):
                 "info": resource.info,
                 "category": resource.category,
                 "director": resource.director,
-                "is_video": resource.is_video
+                "resource_type": resource.resource_type
             }
             result_list.append(result)
         return {
