@@ -39,13 +39,15 @@ class CreateResourceController(BaseController):
     def post(self):
         arg = self.get_argument_dict(must_keys=["user_id"])
 
+        print("arg:", arg)
+
         result = ResourceService().create_resource(video=arg.get("video"),
                                                    cover_pic=arg.get("cover_pic"),
                                                    title=arg.get("title"),
                                                    info=arg.get("info"),
                                                    category=arg.get("category"),
                                                    director=arg.get("director"),
-                                                   is_video=arg.get("is_video"))
+                                                   resource_type=arg.get("resource_type"))
         return {
             "code": 0,
             "msg": "success",
@@ -67,7 +69,7 @@ class UpdateResourceController(BaseController):
                                                    info=arg.get("info"),
                                                    category=arg.get("category"),
                                                    director=arg.get("director"),
-                                                   is_video=arg.get("is_video"))
+                                                   resource_type=arg.get("resource_type"))
 
         return {
             "code": 0,

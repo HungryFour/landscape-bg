@@ -6,7 +6,7 @@ class ResourceService(BaseService):
     def __init__(self, *args, **kwargs):
         super(ResourceService, self).__init__(*args, **kwargs)
 
-    def create_resource(self, video, cover_pic, title, info, category, director, is_video):
+    def create_resource(self, video, cover_pic, title, info, category, director, resource_type):
         resource = ResourceModel(
             video=video,
             cover_pic=cover_pic,
@@ -14,7 +14,7 @@ class ResourceService(BaseService):
             info=info,
             category=category,
             director=director,
-            is_video=is_video
+            resource_type=resource_type
         )
         with self.session_scope() as session:
             session.add(resource)
@@ -26,7 +26,7 @@ class ResourceService(BaseService):
             resourcesList = session.query(ResourceModel).all()
         return resourcesList
 
-    def update_resource(self, resource_id, video, cover_pic, title, info, category, director, is_video):
+    def update_resource(self, resource_id, video, cover_pic, title, info, category, director, resource_type):
         with self.session_scope() as session:
             resource = session.query(ResourceModel) \
                 .filter(ResourceModel.id == resource_id).first()
@@ -40,7 +40,7 @@ class ResourceService(BaseService):
             resource.category = category
             resource.director = director
             resource.info = info
-            resource.is_video = is_video
+            resource.resource_type = resource_type
 
             session.commit()
         return True

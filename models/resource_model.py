@@ -1,5 +1,5 @@
 from models.base_model import BaseModel
-from sqlalchemy import Column, String, Boolean, Text
+from sqlalchemy import Column, String, Integer, Text
 
 
 class ResourceModel(BaseModel):
@@ -10,7 +10,7 @@ class ResourceModel(BaseModel):
     info = Column(String(128), comment="视频介绍")
     category = Column(String(64), comment="视频类别")
     director = Column(String(12), comment="导演")
-    is_video = Column(Boolean, default=True, comment="是否是视频")
+    resource_type = Column(Integer, default=0, comment="0视频  1图片")
 
     def __init__(self, *args, **kwargs):
         super(ResourceModel, self).__init__(*args, **kwargs)
