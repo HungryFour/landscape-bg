@@ -7,9 +7,12 @@ from controllers.upload_file_controller import UploadFileController
 from controllers.vcode_controller import GetImageCodeController, SendVCodeController
 from controllers.admin_user_controller import AdminLoginController, AdminRegisterController, RemoveAdminUserController, \
     UpdateAdminInfoController, UpdateAdminLevelController, UpdateAdminPasswordController, AdminUsersController
-from controllers.employee_controller import EmployeeController, CreateEmployeeController, UploadEmployeeController, RemoveEmployeeController
-from controllers.article_controller import ArticelController, CreateArticelController, UploadArticelController, RemoveArticelController
-from controllers.resource_controller import ResourceController, CreateResourceController, UpdateResourceController, RemoveResourceController
+from controllers.employee_controller import EmployeeController, CreateEmployeeController, UploadEmployeeController, \
+    RemoveEmployeeController, UserGetEmployeeController
+from controllers.article_controller import ArticelController, CreateArticelController, UploadArticelController, RemoveArticelController, \
+    UserGetArticelController
+from controllers.resource_controller import ResourceController, CreateResourceController, UpdateResourceController, \
+    RemoveResourceController, UserGetResourceController
 from controllers.image_controller import ImageController
 
 app = Flask(__name__)
@@ -27,6 +30,10 @@ api.add_resource(TestController, "/test")
 api.add_resource(GetImageCodeController, "/imagecode")  # 获取图片验证码
 api.add_resource(SendVCodeController, "/vcode")  # 获取验证码
 api.add_resource(ImageController, "/image/<file_name>")  # 获取图片
+
+api.add_resource(UserGetResourceController, "/resources")  # 获取资源
+api.add_resource(UserGetArticelController, "/articles")  # 获取文章
+api.add_resource(UserGetEmployeeController, "/employees")  # 获取员工
 
 # Admin-Api
 api.add_resource(AdminLoginController, "/admin/login")  # 登录

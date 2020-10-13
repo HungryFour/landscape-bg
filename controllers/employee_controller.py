@@ -2,6 +2,34 @@ from controllers.base_controllers import BaseController
 from services.employee_service import EmployeeService
 
 
+class UserGetEmployeeController(BaseController):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def get(self):
+        employees_list = EmployeeService().employees()
+
+        result_list = []
+        for employee in employees_list:
+            result = {
+                "id": employee.id,
+                "created_at": str(employee.created_at),
+                "name": employee.name,
+                "avatar": employee.avatar,
+                "title1": employee.title1,
+                "title2": employee.title2,
+                "production": employee.production,
+            }
+            result_list.append(result)
+
+        return {
+            "code": 0,
+            "msg": "success",
+            "data": result_list
+        }
+
+
 class EmployeeController(BaseController):
 
     def __init__(self, *args, **kwargs):

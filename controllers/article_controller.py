@@ -2,6 +2,32 @@ from controllers.base_controllers import BaseController
 from services.article_service import ArticelService
 
 
+class UserGetArticelController(BaseController):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def get(self):
+        article_list = ArticelService().articles()
+        result_list = []
+        for article in article_list:
+            result = {
+                "id": article.id,
+                "created_at": str(article.created_at),
+                "content": article.content,
+                "date": article.date,
+                "title": article.title,
+                "pic": article.pic,
+                "author": article.author,
+            }
+            result_list.append(result)
+        return {
+            "code": 0,
+            "msg": "success",
+            "data": result_list
+        }
+
+
 class ArticelController(BaseController):
 
     def __init__(self, *args, **kwargs):
