@@ -13,8 +13,8 @@ from controllers.article_controller import ArticelController, CreateArticelContr
     UserGetArticelController
 from controllers.resource_controller import ResourceController, CreateResourceController, UpdateResourceController, \
     RemoveResourceController, UserGetResourceController
-from controllers.image_controller import ImageController
 from controllers.message_controller import MessageController, CreateMessageController
+from controllers.file_controller import FileController
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True, resources=r'/*',
@@ -30,7 +30,7 @@ api.add_resource(TestController, "/test")
 
 api.add_resource(GetImageCodeController, "/imagecode")  # 获取图片验证码
 api.add_resource(SendVCodeController, "/vcode")  # 获取验证码
-api.add_resource(ImageController, "/image/<file_name>")  # 获取图片
+api.add_resource(FileController, "/r/<file_name>")  # 获取文件
 
 api.add_resource(UserGetResourceController, "/resources")  # 获取资源
 api.add_resource(UserGetArticelController, "/articles")  # 获取文章
