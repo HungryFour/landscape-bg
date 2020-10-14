@@ -14,6 +14,7 @@ from controllers.article_controller import ArticelController, CreateArticelContr
 from controllers.resource_controller import ResourceController, CreateResourceController, UpdateResourceController, \
     RemoveResourceController, UserGetResourceController
 from controllers.image_controller import ImageController
+from controllers.message_controller import MessageController, CreateMessageController
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True, resources=r'/*',
@@ -60,3 +61,6 @@ api.add_resource(UpdateResourceController, "/admin/update/resource")  # 更新�
 api.add_resource(RemoveResourceController, "/admin/remove/resource")  # 删除资源
 
 api.add_resource(UploadFileController, "/admin/upload_file")  # 上传文件
+
+api.add_resource(MessageController, "/admin/messages")  # 获取留言列表
+api.add_resource(CreateMessageController, "/create/message")  # 创建留言
