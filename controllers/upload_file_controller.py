@@ -14,6 +14,8 @@ class UploadFileController(BaseController):
 
         print("request.files:", request.files)
 
+        arg = self.get_argument_dict(check_token=False)
+
         file = request.files.get('file', None)
 
         if not file:
@@ -21,7 +23,7 @@ class UploadFileController(BaseController):
         if not allowed_file(file.mimetype):
             self.return_error(20009)
 
-        result = UploadService().upload_file(file)
+        result = UploadService().upload_file(file, arg.get("name"))
         return {
             "code": 0,
             "msg": "success",

@@ -4,10 +4,11 @@ import os
 # 设置允许上传的文件类型
 import uuid
 
-ALLOWED_MIMETYPE_DIC = {'image/jpeg': '.jpeg', 'application/pdf': '.pdf', "image/png": '.png', "image/jpg": '.jpg', "image/gif": '.gif'}
+ALLOWED_MIMETYPE_DIC = {'image/jpeg': '.jpeg', 'application/pdf': '.pdf', "image/png": '.png', "image/jpg": '.jpg', "image/gif": '.gif',
+                        "video/mp4": '.mp4'}
 
 
-def save_file_to_the_local(file):
+def save_file_to_the_local(file, file_name=None):
     """
     将文件保存到本地
     :param file: 文件
@@ -15,7 +16,8 @@ def save_file_to_the_local(file):
     :return: path: 文件地址 name 文件名称
     """
     # root = os.getcwd()
-    name = uuid.uuid4().hex + ALLOWED_MIMETYPE_DIC.get(file.mimetype)
+
+    name = (file_name if file_name else uuid.uuid4().hex) + ALLOWED_MIMETYPE_DIC.get(file.mimetype)
     path = os.path.join("resumes/" + name)
     file.save(path)
     return path, name, ALLOWED_MIMETYPE_DIC.get(file.mimetype)
